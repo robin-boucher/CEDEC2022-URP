@@ -17,10 +17,6 @@ SAMPLER(sampler_EmissionMap);
 TEXTURE2D(_SpecularMap);
 SAMPLER(sampler_SpecularMap);
 
-// Properties required for debug display
-float4 _BaseMap_TexelSize;
-float4 _BaseMap_MipInfo;
-
 // Attributes
 struct Attributes
 {
@@ -169,6 +165,8 @@ FragmentOutput GBuffer(InputData inputData, SurfaceData surfaceData)
     #if defined(LIGHTMAP_ON) && defined(_MIXED_LIGHTING_SUBTRACTIVE)
     materialFlags |= kMaterialFlagSubtractiveMixedLighting;  // For subtractive mixed lighting
     #endif
+    // We do not set kMaterialFlagReceiveShadowsOff, kMaterialFlagSpecularHighlightsOff
+    // as this sample always has shadows and specular highlights enabled
     float materialFlagsPacked = PackMaterialFlags(materialFlags);
 
     // Normals

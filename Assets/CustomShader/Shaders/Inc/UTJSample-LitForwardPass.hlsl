@@ -354,7 +354,7 @@ half4 LitForwardFrag(Varyings input) : SV_Target
     surfaceData.alpha = color.a;
     surfaceData.emission = emission;
     surfaceData.metallic = 0;
-    surfaceData.occlusion = 1;
+    surfaceData.occlusion = 0;
     surfaceData.smoothness = specular.a;
     surfaceData.specular = specular.rgb;
     surfaceData.normalTS = normalTS;
