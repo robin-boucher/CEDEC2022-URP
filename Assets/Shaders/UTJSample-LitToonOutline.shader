@@ -1,4 +1,4 @@
-Shader "UTJSample/LitToon"
+Shader "UTJSample/LitToonOutline"
 {
     Properties
     {
@@ -270,8 +270,8 @@ Shader "UTJSample/LitToon"
             #pragma target 4.5
 
             // Vertex/fragment functions
-            #pragma vertex LitToonMetaVert
-            #pragma fragment LitToonMetaFrag
+            #pragma vertex LitMetaVert
+            #pragma fragment LitMetaFrag
 
             // Keywords
             // For editor visualization
@@ -284,8 +284,8 @@ Shader "UTJSample/LitToon"
             // Common properties
             #include "Inc/UTJSample-LitToonProperties.hlsl"
 
-            // Custom LitToonMeta pass (adds emission)
-            #include "Inc/UTJSample-LitToonMetaPass.hlsl"
+            // Custom LitMeta pass (adds emission)
+            #include "Inc/UTJSample-LitMetaPass.hlsl"
 
             ENDHLSL
         }
