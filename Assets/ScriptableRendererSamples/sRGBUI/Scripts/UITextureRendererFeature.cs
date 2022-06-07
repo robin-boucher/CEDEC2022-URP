@@ -54,7 +54,9 @@ public class UITextureRendererFeature : ScriptableRendererFeature
 
         public override void Configure(CommandBuffer cmd, RenderTextureDescriptor cameraTextureDescriptor)
         {
-            // Render texture
+            // Called before Execute
+
+            // Render texture for UI
             this.uiRenderTexture = new RenderTargetHandle();
             this.uiRenderTexture.Init(UITextureRendererFeature.UI_TEXTURE_NAME);
 
@@ -101,6 +103,8 @@ public class UITextureRendererFeature : ScriptableRendererFeature
 
         public override void FrameCleanup(CommandBuffer cmd)
         {
+            // Release render texture
+
             cmd.ReleaseTemporaryRT(this.uiRenderTexture.id);
         }
     }

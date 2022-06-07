@@ -41,7 +41,7 @@ Varyings LitToonOutlineVert(Attributes input)
 
     // Apply normal-based outline (expand vertex in normal direction)
     half2 outlineNormal = normalize(normalCS.xy);
-    positionCS.xy += (outlineNormal / _ScreenParams.xy) * _OutlineThickness * positionCS.w;
+    positionCS.xy += (outlineNormal / _ScreenParams.xy) * _OutlineThickness * positionCS.w * 2;
 
     // Set output
     output.positionCS = positionCS;

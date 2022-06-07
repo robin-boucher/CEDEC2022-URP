@@ -26,9 +26,11 @@
                 float4 positionCS : SV_POSITION;
             };
 
+            // Camera color texture
             TEXTURE2D(_CameraColorTexture);
             SAMPLER(sampler_CameraColorTexture);
-            
+
+            // UI texture rendered into from UITextureRendererFeature
             TEXTURE2D(_UITexture);
             SAMPLER(sampler_UITexture);
            
@@ -44,6 +46,7 @@
 
             half4 frag (Varyings input) : SV_Target
             {
+                // Texture sampling
                 half4 cameraTex = SAMPLE_TEXTURE2D(_CameraColorTexture, sampler_CameraColorTexture, input.uv);
                 half4 uiTex = SAMPLE_TEXTURE2D(_UITexture, sampler_UITexture, input.uv);
 
@@ -52,7 +55,7 @@
 
                 half4 color;
 
-                // Blend with UI
+                // Alpha blend UI on top of camera
                 color.rgb = cameraTex.rgb * (1 - uiTex.a) + uiTex.rgb;
                 
                 // Convert result to Linear

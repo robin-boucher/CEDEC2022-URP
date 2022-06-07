@@ -1,4 +1,4 @@
-Shader "UTJSample/LitToonOutline"
+Shader "UTJSample/LitToonStencil"
 {
     Properties
     {
@@ -23,10 +23,6 @@ Shader "UTJSample/LitToonOutline"
 
         // Shadow ramp
         _ShadowRampBlend("Shadow Ramp Blend", Range(0, 0.5)) = 0.2
-
-        // Outline
-        _OutlineColor("Outline Color", Color) = (0, 0, 0, 1)
-        _OutlineThickness("Outline Thickness", Float) = 1
     }
 
     // SM 4.5 subshader
@@ -55,6 +51,14 @@ Shader "UTJSample/LitToonOutline"
             ZWrite On
             Cull Back
             ZTest LEqual
+
+            // Stencil operation to mask outline
+            Stencil 
+            {
+                Ref 1
+                Comp Always
+                Pass Replace
+            }
 
             HLSLPROGRAM
 
@@ -90,48 +94,10 @@ Shader "UTJSample/LitToonOutline"
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
 
             // Common properties
-            #include "Inc/UTJSample-LitToonOutlineProperties.hlsl"
+            #include "Inc/UTJSample-LitToonProperties.hlsl"
 
             // Custom LitToonForward pass
             #include "Inc/UTJSample-LitToonForwardPass.hlsl"
-
-            ENDHLSL
-        }
-
-        // Outline pass, using SRPDefaultUnlit as extra pass
-        // NOTE: Using SRPDefaultUnlit will count as a multi-pass shader,
-        //       which will break SRP Batcher compatibility
-        Pass
-        {
-            Name "Outline"
-            Tags { "LightMode" = "SRPDefaultUnlit" }
-
-            Blend Off
-            Cull Front
-
-            HLSLPROGRAM
-
-            // Exclude unsupported platforms
-            #pragma exclude_renderers gles gles3 glcore
-            #pragma target 4.5
-
-            // Vertex/fragment functions
-            #pragma vertex LitToonOutlineVert
-            #pragma fragment LitToonOutlineFrag
-
-            // GPU Instancing
-            #pragma multi_compile_instancing
-            // Fog
-            #pragma multi_compile_fog
-
-            // URP core include
-            #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
-
-            // Common properties
-            #include "Inc/UTJSample-LitToonOutlineProperties.hlsl"
-
-            // Outline pass
-            #include "Inc/UTJSample-LitToonOutlinePass.hlsl"
 
             ENDHLSL
         }
@@ -169,7 +135,7 @@ Shader "UTJSample/LitToonOutline"
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/SurfaceInput.hlsl"
 
             // Common properties
-            #include "Inc/UTJSample-LitToonOutlineProperties.hlsl"
+            #include "Inc/UTJSample-LitToonProperties.hlsl"
 
             // Use URP's built in ShadowCaster pass
             #include "Packages/com.unity.render-pipelines.universal/Shaders/ShadowCasterPass.hlsl"
@@ -206,7 +172,7 @@ Shader "UTJSample/LitToonOutline"
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/SurfaceInput.hlsl"
 
             // Common properties
-            #include "Inc/UTJSample-LitToonOutlineProperties.hlsl"
+            #include "Inc/UTJSample-LitToonProperties.hlsl"
 
             // Use URP's built in DepthOnly pass
             #include "Packages/com.unity.render-pipelines.universal/Shaders/DepthOnlyPass.hlsl"
@@ -247,7 +213,7 @@ Shader "UTJSample/LitToonOutline"
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/SurfaceInput.hlsl"
 
             // Common properties
-            #include "Inc/UTJSample-LitToonOutlineProperties.hlsl"
+            #include "Inc/UTJSample-LitToonProperties.hlsl"
 
             // Use URP's built in DepthNormals pass
             // NOTE: This pass does not sample normal maps
@@ -284,7 +250,7 @@ Shader "UTJSample/LitToonOutline"
             #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/MetaPass.hlsl"
 
             // Common properties
-            #include "Inc/UTJSample-LitToonOutlineProperties.hlsl"
+            #include "Inc/UTJSample-LitToonProperties.hlsl"
 
             // Custom LitMeta pass (adds emission)
             #include "Inc/UTJSample-LitMetaPass.hlsl"
