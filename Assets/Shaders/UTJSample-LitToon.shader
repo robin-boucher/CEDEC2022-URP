@@ -129,6 +129,9 @@ Shader "UTJSample/LitToon"
             // Common properties
             #include "Inc/UTJSample-LitToonProperties.hlsl"
 
+            // Properties required by URP ShadowCasterPass.hlsl
+            half _Cutoff;
+
             // Use URP's built in ShadowCaster pass
             #include "Packages/com.unity.render-pipelines.universal/Shaders/ShadowCasterPass.hlsl"
 
@@ -165,6 +168,9 @@ Shader "UTJSample/LitToon"
 
             // Common properties
             #include "Inc/UTJSample-LitToonProperties.hlsl"
+
+            // Properties required by URP DepthOnlyPass.hlsl
+            half _Cutoff;
 
             // Use URP's built in DepthOnly pass
             #include "Packages/com.unity.render-pipelines.universal/Shaders/DepthOnlyPass.hlsl"
@@ -206,6 +212,9 @@ Shader "UTJSample/LitToon"
 
             // Common properties
             #include "Inc/UTJSample-LitToonProperties.hlsl"
+
+            // Properties required by URP DepthNormalsPass.hlsl
+            half _Cutoff;
 
             // Use URP's built in DepthNormals pass
             // NOTE: This pass does not sample normal maps
