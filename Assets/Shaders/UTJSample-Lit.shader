@@ -3,8 +3,8 @@ Shader "UTJSample/Lit"
     Properties
     {
         // Main Texture, color
-        _BaseColor("Base Color", Color) = (1, 1, 1, 1)
-        _BaseMap("Base Map", 2D) = "white" {}
+        [MainColor] _BaseColor("Base Color", Color) = (1, 1, 1, 1)
+        [MainTexture] _BaseMap("Base Map", 2D) = "white" {}
 
         // Normal map
         _BumpScale("Normal Scale", Float) = 1.0
