@@ -56,6 +56,7 @@ Shader "UTJSample/LitToonStencil"
             Stencil 
             {
                 Ref 1
+                WriteMask 1
                 Comp Always
                 Pass Replace
             }

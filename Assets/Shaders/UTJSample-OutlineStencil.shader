@@ -32,6 +32,7 @@ Shader "UTJSample/OutlineStencil"
             Stencil 
             {
                 Ref 1
+                ReadMask 1
                 Comp Greater
             }
 

@@ -51,7 +51,7 @@ public class StencilOverrideRendererFeature : ScriptableRendererFeature
             // Render state block (to override stencil)
             this.renderStateBlock = new RenderStateBlock(RenderStateMask.Stencil);
             this.renderStateBlock.stencilReference = 1; // Stencil Ref for outline mask is 1 (see UTJSample-LitToonStencil.shader)
-            this.renderStateBlock.stencilState = new StencilState(true, 255, 255, CompareFunction.Always, StencilOp.Replace, StencilOp.Keep);
+            this.renderStateBlock.stencilState = new StencilState(true, 255, 1, CompareFunction.Always, StencilOp.Replace, StencilOp.Keep);
         }
 
         public override void Execute(ScriptableRenderContext context, ref RenderingData renderingData)
