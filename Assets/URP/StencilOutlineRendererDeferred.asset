@@ -20,6 +20,25 @@ MonoBehaviour:
       serializedVersion: 2
       m_Bits: 65
     material: {fileID: 2100000, guid: cda2b6a547cde46d3b4eb05e572534da, type: 2}
+--- !u!114 &-7219973321775084033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: caf72fa9ab55647e2b519897caab87fb, type: 3}
+  m_Name: StencilOverrideRendererFeature
+  m_EditorClassIdentifier: 
+  m_Active: 1
+  settings:
+    profilerTag: StencilOverrideRendererFeature
+    renderPassEvent: 300
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 64
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30,13 +49,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: de640fe3d0db1804a85f9fc8f5cadab6, type: 3}
-  m_Name: OutlineRendererForward
+  m_Name: StencilOutlineRendererDeferred
   m_EditorClassIdentifier: 
   debugShaders:
     debugReplacementPS: {fileID: 4800000, guid: cf852408f2e174538bcd9b7fda1c5ae7, type: 3}
   m_RendererFeatures:
+  - {fileID: -7219973321775084033}
   - {fileID: -8751618829163946436}
-  m_RendererFeatureMap: 3c1e10fe0a018c86
+  m_RendererFeatureMap: ff8dcc538480cd9b3c1e10fe0a018c86
   m_UseNativeRenderPass: 0
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   xrSystemData: {fileID: 11400000, guid: 60e1133243b97e347b653163a8c01b64, type: 2}
@@ -58,7 +78,7 @@ MonoBehaviour:
     m_Bits: 2147483647
   m_TransparentLayerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 55
   m_DefaultStencilState:
     overrideStencilState: 0
     stencilReference: 0
@@ -67,7 +87,7 @@ MonoBehaviour:
     failOperation: 0
     zFailOperation: 0
   m_ShadowTransparentReceive: 1
-  m_RenderingMode: 0
+  m_RenderingMode: 1
   m_DepthPrimingMode: 0
   m_AccurateGbufferNormals: 0
   m_ClusteredRendering: 0
