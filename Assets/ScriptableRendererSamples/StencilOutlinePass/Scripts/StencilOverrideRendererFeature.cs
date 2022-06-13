@@ -7,8 +7,8 @@ using System.Collections.Generic;
 public class StencilOverrideRendererFeature : ScriptableRendererFeature
 {
     // Stencil override pass
-    // For deferred renderer, if a stencil operation is defined in a forward pass (UniversalForward/ForwardOnly),
-    // deferred renderer will overwrite it, so we need to manually override in a custom RendererFeature
+    // For deferred renderer, if a stencil operation is defined in a forward pass (UniversalForwardOnly),
+    // deferred renderer will overwrite it, so we need to manually set the stencil state in a custom RendererFeature
     // (NOTE: This can also be done with RenderObjects)
 
     [System.Serializable]
@@ -48,7 +48,7 @@ public class StencilOverrideRendererFeature : ScriptableRendererFeature
             this.shaderTagIds.Add(new ShaderTagId("UniversalForwardOnly"));
             this.shaderTagIds.Add(new ShaderTagId("SRPDefaultUnlit"));
 
-            // Render state block (to override stencil)
+            // Render state block (to override stencil state)
             this.renderStateBlock = new RenderStateBlock(RenderStateMask.Stencil);
             this.renderStateBlock.stencilReference = 1; // Stencil Ref for outline mask is 1 (see UTJSample-LitToonStencil.shader)
             this.renderStateBlock.stencilState = new StencilState(true, 255, 1, CompareFunction.Always, StencilOp.Replace, StencilOp.Keep);
@@ -66,7 +66,7 @@ public class StencilOverrideRendererFeature : ScriptableRendererFeature
             // DrawingSettings
             DrawingSettings drawingSettings = CreateDrawingSettings(this.shaderTagIds, ref renderingData, sortingCriteria);
 
-            // Run (draw renderers)
+            // Run (draw renderers with render state block overriding stencil state)
             CommandBuffer cmd = CommandBufferPool.Get(this.profilerTag);
             using (new ProfilingScope(cmd, this.profilingSampler)) {
                 context.ExecuteCommandBuffer(cmd);
