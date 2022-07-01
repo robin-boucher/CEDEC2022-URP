@@ -145,8 +145,6 @@
             //       included if your shader supports alpha cutout functionality
             half _Cutoff;
 
-
-            // Use URP's built in ShadowCaster pass
             #include "Packages/com.unity.render-pipelines.universal/Shaders/ShadowCasterPass.hlsl"
 
             ENDHLSL
@@ -189,7 +187,6 @@
             //       This property should be exposed in Properties block and
             //       included if your shader supports alpha cutout functionality
             half _Cutoff;
-
 
             // Use URP's built in DepthOnly pass
             #include "Packages/com.unity.render-pipelines.universal/Shaders/DepthOnlyPass.hlsl"
@@ -238,7 +235,6 @@
             //       This property should be exposed in Properties block and
             //       included if your shader supports alpha cutout functionality
             half _Cutoff;
-
 
             // Use URP's built in DepthNormals pass
             // NOTE: This pass does not sample normal maps
