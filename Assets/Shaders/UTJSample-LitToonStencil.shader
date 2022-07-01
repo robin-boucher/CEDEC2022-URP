@@ -1,4 +1,4 @@
-Shader "UTJSample/LitToonStencil"
+﻿Shader "UTJSample/LitToonStencil"
 {
     Properties
     {
@@ -139,7 +139,12 @@ Shader "UTJSample/LitToonStencil"
             #include "Inc/UTJSample-LitToonProperties.hlsl"
 
             // Properties required by URP ShadowCasterPass.hlsl
+            // NOTE: This shader does not support alpha cutout, but URP's pass
+            //       requires this property, so we must define it
+            //       This property should be exposed in Properties block and
+            //       included if your shader supports alpha cutout functionality
             half _Cutoff;
+
 
             // Use URP's built in ShadowCaster pass
             #include "Packages/com.unity.render-pipelines.universal/Shaders/ShadowCasterPass.hlsl"
@@ -179,7 +184,12 @@ Shader "UTJSample/LitToonStencil"
             #include "Inc/UTJSample-LitToonProperties.hlsl"
 
             // Properties required by URP DepthOnlyPass.hlsl
+            // NOTE: This shader does not support alpha cutout, but URP's pass
+            //       requires this property, so we must define it
+            //       This property should be exposed in Properties block and
+            //       included if your shader supports alpha cutout functionality
             half _Cutoff;
+
 
             // Use URP's built in DepthOnly pass
             #include "Packages/com.unity.render-pipelines.universal/Shaders/DepthOnlyPass.hlsl"
@@ -223,7 +233,12 @@ Shader "UTJSample/LitToonStencil"
             #include "Inc/UTJSample-LitToonProperties.hlsl"
 
             // Properties required by URP DepthNormalsPass.hlsl
+            // NOTE: This shader does not support alpha cutout, but URP's pass
+            //       requires this property, so we must define it
+            //       This property should be exposed in Properties block and
+            //       included if your shader supports alpha cutout functionality
             half _Cutoff;
+
 
             // Use URP's built in DepthNormals pass
             // NOTE: This pass does not sample normal maps
