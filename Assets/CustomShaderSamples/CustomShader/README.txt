@@ -12,8 +12,9 @@ URPのカスタムシェーダーのサンプルです。
 - Emission map
 - Shadow cast + shadow receive (メインライト + 追加ライト)
 - Light Layers対応
+- Decals対応
 - UniversalForwardパス (Forwardレンダリング)
-- UniversalGBUfferパス (Deferredレンダリング)
+- UniversalGBufferパス (Deferredレンダリング)
 - _CameraDepthTexture, _CameraNormalsTexture対応
 - ライトマップ (Metaパス)
 - SRP Batcher対応

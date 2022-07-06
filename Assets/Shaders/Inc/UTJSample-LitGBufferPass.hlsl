@@ -290,6 +290,11 @@ FragmentOutput LitGBufferFrag(Varyings input)
     surfaceData.specular = specular.rgb;
     surfaceData.normalTS = normalTS;
 
+#ifdef _DBUFFER
+    // Accept decal projection if enabled
+    ApplyDecalToSurfaceData(input.positionCS, surfaceData, inputData);
+#endif
+
     FragmentOutput output = GBuffer(inputData, surfaceData);
 
     return output;

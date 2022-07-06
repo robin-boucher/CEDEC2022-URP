@@ -83,6 +83,8 @@
             #pragma multi_compile _ DIRLIGHTMAP_COMBINED                       
             #pragma multi_compile _ LIGHTMAP_SHADOW_MIXING
             #pragma multi_compile _ DYNAMICLIGHTMAP_ON
+            // DBuffer (e.g. for projecting decals)
+            #pragma multi_compile_fragment _ _DBUFFER_MRT1 _DBUFFER_MRT2 _DBUFFER_MRT3
             // For Rendering Debugger if enabled
             #pragma multi_compile_fragment _ DEBUG_DISPLAY
 

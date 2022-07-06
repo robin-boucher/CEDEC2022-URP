@@ -5,6 +5,7 @@
 
 // URP includes
 #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
+#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/DBuffer.hlsl"  // For decals
 #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Debug/Debugging3D.hlsl" // Required for debug display
 
 // Texture samplers
@@ -287,7 +288,7 @@ half4 LitForwardFrag(Varyings input) : SV_Target
     // Sample base map + color
     half4 baseMap = SAMPLE_TEXTURE2D(_BaseMap, sampler_BaseMap, uv);
     color = baseMap * _BaseColor;
-               
+
     // Sample normal map
 #if BUMP_SCALE_NOT_SUPPORTED
     half3 normalTS = UnpackNormal(SAMPLE_TEXTURE2D(_BumpMap, sampler_BumpMap, uv));
@@ -358,6 +359,11 @@ half4 LitForwardFrag(Varyings input) : SV_Target
     surfaceData.smoothness = specular.a;
     surfaceData.specular = specular.rgb;
     surfaceData.normalTS = normalTS;
+
+#ifdef _DBUFFER
+    // Accept decal projection if enabled
+    ApplyDecalToSurfaceData(input.positionCS, surfaceData, inputData);
+#endif
 
 #ifdef DEBUG_DISPLAY
     // Stop here and return debug display color Rendering Debugger is enabled with modes that can override
