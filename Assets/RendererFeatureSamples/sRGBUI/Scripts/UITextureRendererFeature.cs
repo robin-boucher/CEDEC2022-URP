@@ -79,7 +79,7 @@ public class UITextureRendererFeature : ScriptableRendererFeature
             Camera camera = cameraData.camera;
 
             // Sorting criteria (default for now)
-            SortingCriteria sortingCriteria = renderingData.cameraData.defaultOpaqueSortFlags;
+            SortingCriteria sortingCriteria = SortingCriteria.CommonTransparent;
 
             // DrawingSettings for ui
             DrawingSettings drawingSettings = CreateDrawingSettings(this.shaderTagIds, ref renderingData, sortingCriteria);

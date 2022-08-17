@@ -114,8 +114,9 @@
 
                 // Color conversion of texture if color space is Linear
                 // (Assumes textures are gamma, no need to do this if textures are linear)
+#if !UNITY_COLORSPACE_GAMMA
                 mainTex.rgb = LinearToGammaSpace(mainTex.rgb);
-
+#endif
                 half4 color = IN.color * mainTex;
 
                 #ifdef UNITY_UI_CLIP_RECT
