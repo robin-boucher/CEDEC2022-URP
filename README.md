@@ -1,5 +1,5 @@
 # CEDEC2022-URP
-このレポジトリはCEDEC 2022のUnity Technologies JapanによるURP公演の補助資料です。カスタムシェーダー及びRenderer Featureのサンプルが含まれています。
+このレポジトリはCEDEC 2022のUnity Technologies JapanによるURP講演の補助資料です。カスタムシェーダー及びRenderer Featureのサンプルが含まれています。
 
 各サンプルにはREADME.txtファイルが同梱されているので、サンプルの説明はそちらをご参照ください。
 
